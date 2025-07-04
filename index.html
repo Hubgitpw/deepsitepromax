@@ -1,0 +1,1440 @@
+<!DOCTYPE html>
+<html lang="bg" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DJ Pro - Вашето парти, нашата музика</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* Custom Styles & Tailwind Config */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #FFFFFF; /* Light background */
+            color: #111827; /* Dark text */
+        }
+        .glassmorphism {
+            background: rgba(255, 255, 255, 0.7); /* Semi-transparent light bg */
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        .neon-accent {
+            color: #A855F7; /* Purple */
+        }
+        .neon-bg {
+            background-color: #A855F7;
+        }
+        .neon-border {
+            border-color: #A855F7;
+        }
+        .neon-shadow {
+            box-shadow: 0 0 15px rgba(168, 85, 247, 0.6), 0 0 5px rgba(168, 85, 247, 0.8);
+        }
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #A855F7;
+            transition: width 0.3s ease;
+        }
+        .nav-link.active::after, .nav-link:hover::after {
+            width: 100%;
+        }
+        .nav-link.active {
+            color: #A855F7;
+        }
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .scroll-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .step-form-step {
+            display: none;
+        }
+        .step-form-step.active {
+            display: block;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F3F4F6;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #A855F7;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #9333EA;
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+    <!-- Header / Navigation -->
+    <header id="header" class="bg-white/80 backdrop-blur-lg fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-gray-200">
+        <div class="container mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
+            <a href="#" data-page="home" class="text-3xl font-black tracking-wider nav-button">
+                DJ <span class="neon-accent">PRO</span>
+            </a>
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="#" data-page="home" class="nav-link nav-button active">Начало</a>
+                <a href="#" data-page="about" class="nav-link nav-button">За нас</a>
+                <a href="#" data-page="services" class="nav-link nav-button">Услуги</a>
+                <a href="#" data-page="gallery" class="nav-link nav-button">Галерия</a>
+                <a href="#" data-page="testimonials" class="nav-link nav-button">Отзиви</a>
+                <a href="#" data-page="faq" class="nav-link nav-button">ЧЗВ</a>
+                <a href="#" data-page="playlist-generator" class="nav-link nav-button">AI Плейлист</a>
+                <a href="#" data-page="contact" class="nav-link nav-button">Контакти</a>
+            </nav>
+            <div class="flex items-center space-x-4">
+                <button class="booking-cta-btn bg-purple-600 text-white font-bold py-2 px-4 text-sm sm:text-base sm:px-3 rounded-full hover:bg-purple-700 transition-all duration-300 transform hover:scale-105 neon-shadow">
+                    Резервирай DJ
+                </button>
+                <button id="mobile-menu-btn" class="md:hidden text-2xl">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white/95 backdrop-blur-lg">
+            <nav class="flex flex-col items-center space-y-4 py-6">
+                <a href="#" data-page="home" class="nav-link nav-button active">Начало</a>
+                <a href="#" data-page="about" class="nav-link nav-button">За нас</a>
+                <a href="#" data-page="services" class="nav-link nav-button">Услуги</a>
+                <a href="#" data-page="gallery" class="nav-link nav-button">Галерия</a>
+                <a href="#" data-page="testimonials" class="nav-link nav-button">Отзиви</a>
+                <a href="#" data-page="faq" class="nav-link nav-button">ЧЗВ</a>
+                <a href="#" data-page="playlist-generator" class="nav-link nav-button">AI Плейлист</a>
+                <a href="#" data-page="contact" class="nav-link nav-button">Контакти</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content" class="pt-20">
+        <!-- Each section is a "page" -->
+
+        <!-- Home Page -->
+        <section id="home" class="page active">
+            <div class="relative min-h-screen flex items-center justify-center text-center overflow-hidden">
+                <div class="absolute inset-0 bg-black opacity-60 z-10"></div>
+                <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=80&w=2070&auto=format&fit=crop" 
+                     alt="DJ на парти" 
+                     class="absolute inset-0 w-full h-full object-cover animate-[zoom_20s_ease-in-out_infinite]">
+                <style>@keyframes zoom { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }</style>
+                <div class="relative z-20 px-6">
+                    <h1 class="text-4xl sm:text-5xl md:text-7xl font-black text-white uppercase tracking-wider drop-shadow-[0_5px_15px_rgba(0,0,0,0.5)]">
+                        Професионални <span class="neon-accent">DJ Услуги</span>
+                    </h1>
+                    <p class="mt-4 text-base sm:text-lg md:text-xl text-gray-200 max-w-3xl mx-auto">
+                        Ние предлагаме повече от музика, ние създаваме атмосферата, която прави вашите моменти още по-запомнящи се.
+                    </p>
+                    <button class="booking-cta-btn mt-8 bg-purple-600 text-white font-bold py-3 px-10 rounded-full text-lg hover:bg-purple-700 transition-all duration-300 transform hover:scale-105 neon-shadow">
+                        Получи оферта
+                    </button>
+                </div>
+            </div>
+
+            <!-- Services Overview -->
+            <div class="py-16 md:py-20 bg-white">
+                <div class="container mx-auto px-4 sm:px-6 text-center">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-2 scroll-reveal">Нашите <span class="neon-accent">Услуги</span></h2>
+                    <p class="text-gray-600 mb-12 max-w-2xl mx-auto scroll-reveal">Предлагаме пълен пакет от услуги, за да гарантираме перфектното ви събитие.</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                        <!-- Service Card -->
+                        <div class="bg-gray-50 p-8 rounded-2xl border border-gray-200 hover:border-purple-300 hover:shadow-lg hover:-translate-y-2 transition-all duration-300 scroll-reveal">
+                            <i class="fas fa-ring text-5xl neon-accent mb-4"></i>
+                            <h3 class="text-2xl font-bold mb-2">DJ за сватби</h3>
+                            <p class="text-gray-600">Първата сигурна крачка към планиране на най-важния ви ден е да изберете DJ-я, който ще създава вълшебната атмосфера на вашият празник!</p>
+                        </div>
+                        <!-- Service Card -->
+                        <div class="bg-gray-50 p-8 rounded-2xl border border-gray-200 hover:border-purple-300 hover:shadow-lg hover:-translate-y-2 transition-all duration-300 scroll-reveal" style="transition-delay: 100ms;">
+                            <i class="fas fa-briefcase text-5xl neon-accent mb-4"></i>
+                            <h3 class="text-2xl font-bold mb-2">Фирмени събития</h3>
+                            <p class="text-gray-600">Имате нужда от стил и професионализъм за вашето корпоративно парти? Вие сте на правилното място!</p>
+                        </div>
+                        <!-- Service Card -->
+                        <div class="bg-gray-50 p-8 rounded-2xl border border-gray-200 hover:border-purple-300 hover:shadow-lg hover:-translate-y-2 transition-all duration-300 scroll-reveal" style="transition-delay: 200ms;">
+                            <i class="fas fa-birthday-cake text-5xl neon-accent mb-4"></i>
+                            <h3 class="text-2xl font-bold mb-2">Частни партита</h3>
+                            <p class="text-gray-600">Идеалния избор за настроение на всеки повод.</p>
+                        </div>
+                        <!-- Service Card -->
+                        <div class="bg-gray-50 p-8 rounded-2xl border border-gray-200 hover:border-purple-300 hover:shadow-lg hover:-translate-y-2 transition-all duration-300 scroll-reveal" style="transition-delay: 300ms;">
+                            <i class="fas fa-volume-up text-5xl neon-accent mb-4"></i>
+                            <h3 class="text-2xl font-bold mb-2">Озвучаване</h3>
+                            <p class="text-gray-600">Имате нужда от техника? Може да наемете професионална техника за кристален звук и прекрасно изкарване.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+             <!-- Gallery Preview -->
+            <div class="py-16 md:py-20 bg-gray-50">
+                <div class="container mx-auto px-4 sm:px-6 text-center">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-12 scroll-reveal">Моменти от <span class="neon-accent">наши събития</span></h2>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <div class="overflow-hidden rounded-lg shadow-lg scroll-reveal"><img src="https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?w=500" class="w-full h-full object-cover hover:scale-110 transition-transform duration-300 cursor-pointer gallery-item" alt="Сватбено парти"></div>
+                        <div class="overflow-hidden rounded-lg shadow-lg row-span-2 scroll-reveal" style="transition-delay: 100ms;"><img src="https://images.unsplash.com/photo-1505236858219-8359eb29e329?w=500" class="w-full h-full object-cover hover:scale-110 transition-transform duration-300 cursor-pointer gallery-item" alt="Фирмено събитие"></div>
+                        <div class="overflow-hidden rounded-lg shadow-lg scroll-reveal" style="transition-delay: 200ms;"><img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=500" class="w-full h-full object-cover hover:scale-110 transition-transform duration-300 cursor-pointer gallery-item" alt="Плажно парти"></div>
+                        <div class="overflow-hidden rounded-lg shadow-lg scroll-reveal" style="transition-delay: 300ms;"><img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=500" class="w-full h-full object-cover hover:scale-110 transition-transform duration-300 cursor-pointer gallery-item" alt="Концерт"></div>
+                        <div class="overflow-hidden rounded-lg shadow-lg scroll-reveal" style="transition-delay: 400ms;"><img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=500" class="w-full h-full object-cover hover:scale-110 transition-transform duration-300 cursor-pointer gallery-item" alt="Клубна вечер"></div>
+                        <div class="overflow-hidden rounded-lg shadow-lg scroll-reveal" style="transition-delay: 500ms;"><img src="https://images.unsplash.com/photo-1541532713592-79a0317b6b77?w=500" class="w-full h-full object-cover hover:scale-110 transition-transform duration-300 cursor-pointer gallery-item" alt="Частно парти"></div>
+                        <div class="overflow-hidden rounded-lg shadow-lg scroll-reveal"><img src="https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?w=500" class="w-full h-full object-cover hover:scale-110 transition-transform duration-300 cursor-pointer gallery-item" alt="Сватбено парти"></div>
+                        <div class="overflow-hidden rounded-lg shadow-lg row-span-2 scroll-reveal" style="transition-delay: 100ms;"><img src="https://images.unsplash.com/photo-1505236858219-8359eb29e329?w=500" class="w-full h-full object-cover hover:scale-110 transition-transform duration-300 cursor-pointer gallery-item" alt="Фирмено събитие"></div>
+                        <div class="overflow-hidden rounded-lg shadow-lg scroll-reveal" style="transition-delay: 200ms;"><img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=500" class="w-full h-full object-cover hover:scale-110 transition-transform duration-300 cursor-pointer gallery-item" alt="Плажно парти"></div>
+                        <div class="overflow-hidden rounded-lg shadow-lg scroll-reveal" style="transition-delay: 300ms;"><img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=500" class="w-full h-full object-cover hover:scale-110 transition-transform duration-300 cursor-pointer gallery-item" alt="Концерт"></div>
+                     <button class="nav-button mt-8 border-2 border-purple-600 text-purple-600 font-bold py-3 px-10 rounded-full text-lg hover:bg-purple-600 hover:text-white transition-all duration-300" data-page="gallery">
+                        Виж цялата галерия
+                    </button>
+                </div>
+            </div>
+
+            <!-- Testimonials Preview -->
+            <div class="py-16 md:py-20 bg-white">
+                <div class="container mx-auto px-4 sm:px-6 text-center">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-12 scroll-reveal">Какво казват <span class="neon-accent">нашите клиенти</span></h2>
+                    <div class="relative max-w-3xl mx-auto">
+                        <div id="testimonial-slider" class="overflow-hidden">
+                            <div id="testimonial-track" class="flex transition-transform duration-500 ease-in-out">
+                                <!-- Testimonial Item -->
+                                <div class="w-full flex-shrink-0 px-4">
+                                    <div class="glassmorphism p-8 rounded-2xl border border-gray-100 shadow-sm">
+                                        <img src="https://i.pravatar.cc/150?u=a042581f4e29026704d" alt="Клиент 1" class="w-20 h-20 rounded-full mx-auto mb-4 border-2 border-purple-500">
+                                        <p class="text-gray-700 italic mb-4">"Най-добрата сватба, на която съм била! DJ Pro направиха вечерта незабравима. Музиката беше перфектна, а настроението - на макс!"</p>
+                                        <h4 class="font-bold text-lg text-gray-800">Мария Петрова</h4>
+                                        <div class="text-yellow-400 mt-2">
+                                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Testimonial Item -->
+                               <div class="w-full flex-shrink-0 px-4">
+                                    <div class="glassmorphism p-8 rounded-2xl border border-gray-100 shadow-sm">
+                                        <img src="https://images.unsplash.com/photo-1622151834677-70f982c9adef?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDk0fHxidXNpbmVzc21hbnxlbnwwfHwwfHx8MA%3D%3D" alt="Клиент 2" class="w-20 h-20 rounded-full mx-auto mb-4 border-2 border-purple-500 object-cover">
+                                        <p class="text-gray-700 italic mb-4">"Професионалисти от най-високо ниво! Организирахме фирмено парти и всички колеги останаха впечатлени. Препоръчвам горещо!"</p>
+                                        <h4 class="font-bold text-lg text-gray-800">Иван Георгиев</h4>
+                                        <div class="text-yellow-400 mt-2">
+                                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Testimonial Item -->
+                                <div class="w-full flex-shrink-0 px-4">
+                                    <div class="glassmorphism p-8 rounded-2xl border border-gray-100 shadow-sm">
+                                        <img src="https://i.pravatar.cc/150?u=a042581f4e29026704f" alt="Клиент 3" class="w-20 h-20 rounded-full mx-auto mb-4 border-2 border-purple-500">
+                                        <p class="text-gray-700 italic mb-4">"Благодарим за невероятния рожден ден! DJ-ят усети перфектно настроението на гостите и дансингът не остана празен."</p>
+                                        <h4 class="font-bold text-lg text-gray-800">Елена Василева</h4>
+                                        <div class="text-yellow-400 mt-2">
+                                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button id="prev-testimonial" class="absolute top-1/2 left-0 -translate-x-1/2 text-2xl p-2 text-gray-500 hover:text-gray-800 transition-colors"><i class="fas fa-chevron-left"></i></button>
+                        <button id="next-testimonial" class="absolute top-1/2 right-0 -translate-y-1/2 text-2xl p-2 text-gray-500 hover:text-gray-800 transition-colors"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- About Us Page -->
+        <section id="about" class="page hidden py-16 md:py-20">
+            <div class="container mx-auto px-4 sm:px-6">
+                 <h1 class="text-4xl md:text-5xl font-black text-center mb-4 scroll-reveal">За <span class="neon-accent">DJ Pro</span></h1>
+                 <p class="text-center text-gray-600 max-w-4xl mx-auto mb-16 scroll-reveal">DJ Pro е водеща агенция за професионални DJ услуги в България с повече от 25+ години опит в индустрията. Ние съчетаваме страстта към музиката с най-новите технологии, за да създадем незабравими преживявания.</p>
+
+                 <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="scroll-reveal">
+                        <img src="https://i.ytimg.com/vi/bmgxkhBFTU0/maxresdefault.jpg" alt="Екипът на DJ Pro" class="rounded-2xl shadow-lg w-full">
+                    </div>
+                    <div class="scroll-reveal" style="transition-delay: 100ms;">
+                        <h2 class="text-3xl font-bold mb-4">Нашата история</h2>
+                        <p class="text-gray-700 mb-4">Всичко започна преди повече от 25 години — със страст към музиката и един пулт, няколко винила и идеята, че музиката може не просто да звучи, а да се усеща. Не сме тук, за да озвучаваме събития. Ние ги трансформираме — превръщаме обикновени еднотипни вечери в прекрасни моменти, които се запомнят и разказват с усмивка на лице години наред. DJ Pro не е просто агенция. DJ Pro е мястото, където музиката започва да разкрива истинския си потенциал.</p>
+                        <p class="text-gray-700">DJ Pro е основана преди повече от 25+ години от човек с огромна страст към музиката, който създава компания, която не просто предоставя DJ услуги, а която създава незабравими спомени и чудесни емоционални преживявания чрез музиката. През годините сме се развили от малък екип от 3 души до водеща агенция с над 15 професионални DJ-и и техници. Нашите услуги са се разширили от просто пускане на музика до комплексни решения за озвучаване, осветление и събитийно управление. Днес DJ Pro е синоним на качество и професионализъм в българската развлекателна индустрия, с над 5000+ успешно реализирани събития и хиляди доволни клиенти.</p>
+                    </div>
+                 </div>
+
+                 <div class="text-center py-16 md:py-20">
+                     <h2 class="text-4xl font-bold mb-4 scroll-reveal">Нашите <span class="neon-accent">Артисти</span></h2>
+                     <p class="text-center text-gray-600 max-w-3xl mx-auto mb-12 scroll-reveal">Запознайте се с талантливите DJ-и от нашия екип, всеки със своя уникален стил и богат опит.</p>
+                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+                        <!-- DJ Card -->
+                        <div class="text-center scroll-reveal">
+                            <div class="relative group">
+                                <img src="https://sorqjwppadopkcxrugus.supabase.co/storage/v1/object/public/images//IMG_3112.jpeg" alt="DJ Mitev" class="w-full h-80 object-cover rounded-2xl grayscale group-hover:grayscale-0 transition-all duration-300">
+                                <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 rounded-2xl transition-all duration-300"></div>
+                                <div class="absolute bottom-4 left-4 text-left">
+                                    <h3 class="text-2xl font-bold text-white">DJ Mitev</h3>
+                                    <p class="text-purple-300 text-sm">House, Techno, Pop-Folk, R&B</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- DJ Card -->
+                        <div class="text-center scroll-reveal" style="transition-delay: 100ms;">
+                            <div class="relative group">
+                                <img src="https://sorqjwppadopkcxrugus.supabase.co/storage/v1/object/public/images//IMG_3113.jpeg" alt="DJ Yanberktz" class="w-full h-80 object-cover rounded-2xl grayscale group-hover:grayscale-0 transition-all duration-300">
+                                <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 rounded-2xl transition-all duration-300"></div>
+                                <div class="absolute bottom-4 left-4 text-left">
+                                    <h3 class="text-2xl font-bold text-white">DJ Yanberktz</h3>
+                                    <p class="text-purple-300 text-sm">House, Techno, Pop-Folk, Commercial</p>
+                                </div>
+                            </div>
+                        </div>
+                         <!-- DJ Card -->
+                        <div class="text-center scroll-reveal" style="transition-delay: 200ms;">
+                             <div class="relative group">
+                                <img src="https://sorqjwppadopkcxrugus.supabase.co/storage/v1/object/public/images//IMG_4749.jpeg" alt="DJ DIOR" class="w-full h-80 object-cover rounded-2xl grayscale group-hover:grayscale-0 transition-all duration-300">
+                                <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 rounded-2xl transition-all duration-300"></div>
+                                <div class="absolute bottom-4 left-4 text-left">
+                                    <h3 class="text-2xl font-bold text-white">DJ DIOR</h3>
+                                    <p class="text-purple-300 text-sm">House, Deep House, Melodic, Techno</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- DJ Card -->
+                        <div class="text-center scroll-reveal">
+                            <div class="relative group">
+                                <img src="https://sorqjwppadopkcxrugus.supabase.co/storage/v1/object/public/images//IMG_3112.jpeg" alt="DJ Toshko" class="w-full h-80 object-cover rounded-2xl grayscale group-hover:grayscale-0 transition-all duration-300">
+                                <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 rounded-2xl transition-all duration-300"></div>
+                                <div class="absolute bottom-4 left-4 text-left">
+                                    <h3 class="text-2xl font-bold text-white">DJ Toshko</h3>
+                                    <p class="text-purple-300 text-sm">House, Pop-Folk, Hip-Hop, Commercial</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- DJ Card -->
+                        <div class="text-center scroll-reveal" style="transition-delay: 100ms;">
+                            <div class="relative group">
+                                <img src="https://sorqjwppadopkcxrugus.supabase.co/storage/v1/object/public/images//IMG_3115.jpeg" alt="DJ Just Hriso" class="w-full h-80 object-cover rounded-2xl grayscale group-hover:grayscale-0 transition-all duration-300">
+                                <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 rounded-2xl transition-all duration-300"></div>
+                                <div class="absolute bottom-4 left-4 text-left">
+                                    <h3 class="text-2xl font-bold text-white">DJ Just Hriso</h3>
+                                    <p class="text-purple-300 text-sm">House, Pop-Folk, R&B, BG Rap</p>
+                                </div>
+                            </div>
+                        </div>
+                         <!-- DJ Card -->
+                        <div class="text-center scroll-reveal" style="transition-delay: 200ms;">
+                             <div class="relative group">
+                                <img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?q=80&w=2070&auto=format&fit=crop" alt="DJ IF" class="w-full h-80 object-cover rounded-2xl grayscale group-hover:grayscale-0 transition-all duration-300">
+                                <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 rounded-2xl transition-all duration-300"></div>
+                                <div class="absolute bottom-4 left-4 text-left">
+                                    <h3 class="text-2xl font-bold text-white">DJ IF</h3>
+                                    <p class="text-purple-300 text-sm">House, Pop-Folk, Hip-Hop, 00's</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- DJ Card -->
+                        <div class="text-center scroll-reveal">
+                            <div class="relative group">
+                                <img src="https://images.unsplash.com/photo-1561487205-5a769a851a44?q=80&w=1974&auto=format&fit=crop" alt="DJ Bobby" class="w-full h-80 object-cover rounded-2xl grayscale group-hover:grayscale-0 transition-all duration-300">
+                                <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 rounded-2xl transition-all duration-300"></div>
+                                <div class="absolute bottom-4 left-4 text-left">
+                                    <h3 class="text-2xl font-bold text-white">DJ Bobby</h3>
+                                    <p class="text-purple-300 text-sm">House, Pop-Folk, Latino, BG</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- DJ Card -->
+                        <div class="text-center scroll-reveal" style="transition-delay: 100ms;">
+                            <div class="relative group">
+                                <img src="https://images.unsplash.com/photo-1543321269-9d868a183532?q=80&w=1974&auto=format&fit=crop" alt="DJ Mitrev" class="w-full h-80 object-cover rounded-2xl grayscale group-hover:grayscale-0 transition-all duration-300">
+                                <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 rounded-2xl transition-all duration-300"></div>
+                                <div class="absolute bottom-4 left-4 text-left">
+                                    <h3 class="text-2xl font-bold text-white">DJ Mitrev</h3>
+                                    <p class="text-purple-300 text-sm">House, Pop-Folk, Commercial, BG Rap</p>
+                                </div>
+                            </div>
+                        </div>
+                         <!-- DJ Card -->
+                        <div class="text-center scroll-reveal" style="transition-delay: 200ms;">
+                             <div class="relative group">
+                                <img src="https://images.unsplash.com/photo-1594623930335-82a170529ca3?q=80&w=1964&auto=format&fit=crop" alt="DJ Peppy" class="w-full h-80 object-cover rounded-2xl grayscale group-hover:grayscale-0 transition-all duration-300">
+                                <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 rounded-2xl transition-all duration-300"></div>
+                                <div class="absolute bottom-4 left-4 text-left">
+                                    <h3 class="text-2xl font-bold text-white">DJ Peppy</h3>
+                                    <p class="text-purple-300 text-sm">House, Pop-Folk, R&B, Hip-Hop</p>
+                                </div>
+                            </div>
+                        </div>
+                     </div>
+                 </div>
+                 
+                 <!-- Musical Specialties -->
+                <div class="py-16 md:py-20 bg-gray-50">
+                    <h2 class="text-4xl font-bold text-center mb-4 scroll-reveal">Музикални <span class="neon-accent">специалности</span></h2>
+                    <p class="text-center text-gray-600 max-w-3xl mx-auto mb-12 scroll-reveal">Нашите DJ-и покриват широк спектър от музикални жанрове и специализации.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <!-- Specialty Card -->
+                        <div class="bg-white p-8 rounded-2xl border border-gray-200 shadow-sm hover:shadow-lg hover:-translate-y-2 transition-all duration-300 scroll-reveal">
+                            <h3 class="text-xl font-bold mb-2">Спокойна и атмосферна музика / Lounge & Chillout</h3>
+                            <p class="text-gray-600">Спокойни, атмосферични сетове за фон на премиум събития, откривания, коктейли, rooftop партита или просто вечер с класа.</p>
+                        </div>
+                         <!-- Specialty Card -->
+                        <div class="bg-white p-8 rounded-2xl border border-gray-200 shadow-sm hover:shadow-lg hover:-translate-y-2 transition-all duration-300 scroll-reveal" style="transition-delay: 100ms;">
+                            <h3 class="text-xl font-bold mb-2">Сватбени DJ-и / Wedding DJs</h3>
+                            <p class="text-gray-600">От „Телефонна любов“ до „Losing it“ — знаем как да направим всяка сватба незабравима. Плейлист, съобразен с младоженците и гостите.</p>
+                        </div>
+                         <!-- Specialty Card -->
+                        <div class="bg-white p-8 rounded-2xl border border-gray-200 shadow-sm hover:shadow-lg hover:-translate-y-2 transition-all duration-300 scroll-reveal" style="transition-delay: 200ms;">
+                            <h3 class="text-xl font-bold mb-2">Фирмени събития / Corporate Events</h3>
+                            <p class="text-gray-600">Музикален фон за професионални и неформални корпоративни срещи, конференции, коктейли и годишни тържества.</p>
+                        </div>
+                         <!-- Specialty Card -->
+                        <div class="bg-white p-8 rounded-2xl border border-gray-200 shadow-sm hover:shadow-lg hover:-translate-y-2 transition-all duration-300 scroll-reveal">
+                            <h3 class="text-xl font-bold mb-2">Балкан микс / Balkan Mix</h3>
+                            <p class="text-gray-600">Комбинация от модерна поп-фолк музика, балкански ритми и хитовете.</p>
+                        </div>
+                         <!-- Specialty Card -->
+                        <div class="bg-white p-8 rounded-2xl border border-gray-200 shadow-sm hover:shadow-lg hover:-translate-y-2 transition-all duration-300 scroll-reveal" style="transition-delay: 100ms;">
+                            <h3 class="text-xl font-bold mb-2">Поп & R&B</h3>
+                            <p class="text-gray-600">Познати и обичани хитове, които карат всички да затанцуват и запеят.</p>
+                        </div>
+                         <!-- Specialty Card -->
+                        <div class="bg-white p-8 rounded-2xl border border-gray-200 shadow-sm hover:shadow-lg hover:-translate-y-2 transition-all duration-300 scroll-reveal" style="transition-delay: 200ms;">
+                            <h3 class="text-xl font-bold mb-2">Клубни миксове / Club Mix</h3>
+                            <p class="text-gray-600">Актуални хитове и класики в модерна обработка.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Services Page -->
+        <section id="services" class="page hidden py-16 md:py-20">
+             <div class="container mx-auto px-4 sm:px-6">
+                 <h1 class="text-4xl md:text-5xl font-black text-center mb-4 scroll-reveal">Нашите <span class="neon-accent">Услуги</span></h1>
+                 <p class="text-center text-gray-600 max-w-3xl mx-auto mb-16 scroll-reveal">Предлагаме пълен спектър от DJ услуги, адаптирани към вашите нужди и създаващи перфектната атмосфера за всеки повод.</p>
+                 <div class="space-y-16">
+                    <!-- Service Item -->
+                    <div class="grid md:grid-cols-2 gap-12 items-center scroll-reveal">
+                        <div class="order-2 md:order-1">
+                            <h2 class="text-3xl font-bold mb-4">DJ за сватби</h2>
+                            <p class="text-gray-700 mb-6">Вашият сватбен ден заслужава перфектния саундтрак. Ние работим в тясна връзка с вас, за да създадем музикална програма, която отразява вашата история и стил. От церемонията до последния танц, ние се грижим за всичко.</p>
+                            <ul class="space-y-2 text-gray-700 mb-6">
+                                <li><i class="fas fa-check-circle neon-accent mr-2"></i>Персонализиран плейлист</li>
+                                <li><i class="fas fa-check-circle neon-accent mr-2"></i>Водене на ритуали и игри</li>
+                                <li><i class="fas fa-check-circle neon-accent mr-2"></i>Професионално озвучаване и осветление</li>
+                            </ul>
+                            <button class="booking-cta-btn bg-purple-600 text-white font-bold py-2 px-6 rounded-full hover:bg-purple-700 transition-all duration-300 transform hover:scale-105 neon-shadow">Резервирай за сватба</button>
+                        </div>
+                        <div class="order-1 md:order-2">
+                             <img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=80&w=2070&auto=format&fit=crop" alt="DJ на сватба" class="rounded-2xl shadow-lg w-full">
+                        </div>
+                    </div>
+                     <!-- Service Item -->
+                    <div class="grid md:grid-cols-2 gap-12 items-center scroll-reveal">
+                         <div>
+                             <img src="https://images.unsplash.com/photo-1531058020387-3be344556be6?q=80&w=2070&auto=format&fit=crop" alt="Фирмено събитие" class="rounded-2xl shadow-lg w-full">
+                        </div>
+                        <div>
+                            <h2 class="text-3xl font-bold mb-4">DJ за фирмени събития</h2>
+                            <p class="text-gray-700 mb-6">От гала вечери до неформални тиймбилдинги, ние предлагаме стилно и професионално музикално оформление, което ще впечатли вашите клиенти и служители. Създаваме подходящата атмосфера за всеки етап от вашето събитие.</p>
+                             <ul class="space-y-2 text-gray-700 mb-6">
+                                <li><i class="fas fa-check-circle neon-accent mr-2"></i>Фонова музика за коктейли и вечери</li>
+                                <li><i class="fas fa-check-circle neon-accent mr-2"></i>Енергични сетове за парти частта</li>
+                                <li><i class="fas fa-check-circle neon-accent mr-2"></i>Микрофони и озвучаване за презентации</li>
+                            </ul>
+                            <button class="booking-cta-btn bg-purple-600 text-white font-bold py-2 px-6 rounded-full hover:bg-purple-700 transition-all duration-300 transform hover:scale-105 neon-shadow">Запитване за събитие</button>
+                        </div>
+                    </div>
+                     <!-- Service Item -->
+                    <div class="grid md:grid-cols-2 gap-12 items-center scroll-reveal">
+                        <div class="order-2 md:order-1">
+                            <h2 class="text-3xl font-bold mb-4">DJ за частни партита</h2>
+                            <p class="text-gray-700 mb-6">Рождени дни, юбилеи, абитуриентски балове - всяко частно парти има нужда от страхотна музика. Нашите DJ-и са майстори в това да уловят настроението и да накарат всички да танцуват до зори.</p>
+                            <ul class="space-y-2 text-gray-700 mb-6">
+                                <li><i class="fas fa-check-circle neon-accent mr-2"></i>Музика за всякакви вкусове и възрасти</li>
+                                <li><i class="fas fa-check-circle neon-accent mr-2"></i>Компактна и мощна техника</li>
+                                <li><i class="fas fa-check-circle neon-accent mr-2"></i>Ефектно парти осветление</li>
+                            </ul>
+                            <button class="booking-cta-btn bg-purple-600 text-white font-bold py-2 px-6 rounded-full hover:bg-purple-700 transition-all duration-300 transform hover:scale-105 neon-shadow">Резервирай за парти</button>
+                        </div>
+                        <div class="order-1 md:order-2">
+                             <img src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?q=80&w=2069&auto=format&fit=crop" alt="Частно парти" class="rounded-2xl shadow-lg w-full">
+                        </div>
+                    </div>
+                 </div>
+             </div>
+        </section>
+
+        <!-- Gallery Page -->
+        <section id="gallery" class="page hidden py-16 md:py-20">
+             <div class="container mx-auto px-4 sm:px-6">
+                 <h1 class="text-4xl md:text-5xl font-black text-center mb-4 scroll-reveal">Нашата <span class="neon-accent">Галерия</span></h1>
+                 <p class="text-center text-gray-600 max-w-3xl mx-auto mb-16 scroll-reveal">Разгледайте моменти от нашите най-успешни събития и се вдъхновете за вашето следващо парти.</p>
+                 <div class="text-center mb-12 scroll-reveal">
+                     <button class="gallery-filter-btn active" data-filter="all">Всички</button>
+                     <button class="gallery-filter-btn" data-filter="weddings">Сватби</button>
+                     <button class="gallery-filter-btn" data-filter="corporate">Фирмени</button>
+                     <button class="gallery-filter-btn" data-filter="private">Частни</button>
+                 </div>
+                 <div id="gallery-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                    <!-- Gallery Images -->
+                    <div class="gallery-grid-item" data-category="weddings"><img src="https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?w=500&h=500&fit=crop" alt="Сватба 1" class="gallery-item w-full h-full object-cover rounded-lg cursor-pointer hover:opacity-80 transition-opacity"></div>
+                    <div class="gallery-grid-item" data-category="corporate"><img src="https://images.unsplash.com/photo-1505236858219-8359eb29e329?w=500&h=500&fit=crop" alt="Фирмено 1" class="gallery-item w-full h-full object-cover rounded-lg cursor-pointer hover:opacity-80 transition-opacity"></div>
+                    <div class="gallery-grid-item" data-category="private"><img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=500&h=500&fit=crop" alt="Частно парти 1" class="gallery-item w-full h-full object-cover rounded-lg cursor-pointer hover:opacity-80 transition-opacity"></div>
+                    <div class="gallery-grid-item" data-category="weddings"><img src="https://images.unsplash.com/photo-1541532713592-79a0317b6b77?w=500&h=500&fit=crop" alt="Сватба 2" class="gallery-item w-full h-full object-cover rounded-lg cursor-pointer hover:opacity-80 transition-opacity"></div>
+                    <div class="gallery-grid-item" data-category="private"><img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=500&h=500&fit=crop" alt="Частно парти 2" class="gallery-item w-full h-full object-cover rounded-lg cursor-pointer hover:opacity-80 transition-opacity"></div>
+                    <div class="gallery-grid-item" data-category="corporate"><img src="https://images.unsplash.com/photo-1541532713592-79a0317b6b77?w=500&h=500&fit=crop" alt="Фирмено 2" class="gallery-item w-full h-full object-cover rounded-lg cursor-pointer hover:opacity-80 transition-opacity"></div>
+                    <div class="gallery-grid-item" data-category="weddings"><img src="https://images.unsplash.com/photo-1541532713592-79a0317b6b77?w=500&h=500&fit=crop" alt="Сватба 3" class="gallery-item w-full h-full object-cover rounded-lg cursor-pointer hover:opacity-80 transition-opacity"></div>
+                    <div class="gallery-grid-item" data-category="private"><img src="https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?w=500&h=500&fit=crop" alt="Частно парти 3" class="gallery-item w-full h-full object-cover rounded-lg cursor-pointer hover:opacity-80 transition-opacity"></div>
+                 </div>
+             </div>
+        </section>
+
+        <!-- Testimonials Page -->
+        <section id="testimonials" class="page hidden py-16 md:py-20">
+             <div class="container mx-auto px-4 sm:px-6">
+                 <h1 class="text-4xl md:text-5xl font-black text-center mb-4 scroll-reveal">Какво казват <span class="neon-accent">клиентите</span></h1>
+                 <p class="text-center text-gray-600 max-w-3xl mx-auto mb-16 scroll-reveal">Гордеем се с отзивите на нашите клиенти и се стремим да надминаваме очакванията им при всяко събитие.</p>
+                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Testimonial Card -->
+                    <div class="glassmorphism p-8 rounded-2xl border border-gray-100 shadow-sm scroll-reveal">
+                        <div class="flex items-center mb-4">
+                            <img src="https://i.pravatar.cc/150?u=a042581f4e29026704d" alt="Клиент 1" class="w-16 h-16 rounded-full mr-4 border-2 border-purple-500">
+                            <div>
+                                <h4 class="font-bold text-lg text-gray-800">Мария Петрова</h4>
+                                <div class="text-yellow-400 mt-1">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-gray-700 italic">"Най-добрата сватба, на която съм била! DJ Pro направиха вечерта незабравима. Музиката беше перфектна, а настроението - на макс!"</p>
+                    </div>
+                     <!-- Testimonial Card -->
+                    <div class="glassmorphism p-8 rounded-2xl border border-gray-100 shadow-sm scroll-reveal" style="transition-delay: 100ms;">
+                        <div class="flex items-center mb-4">
+                            <img src="https://images.unsplash.com/photo-1622151834677-70f982c9adef?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDk0fHxidXNpbmVzc21hbnxlbnwwfHwwfHx8MA%3D%3D" alt="Клиент 2" class="w-16 h-16 rounded-full mr-4 border-2 border-purple-500 object-cover">
+                            <div>
+                                <h4 class="font-bold text-lg text-gray-800">Иван Георгиев</h4>
+                                <div class="text-yellow-400 mt-1">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-gray-700 italic">"Професионалисти от най-високо ниво! Организирахме фирмено парти и всички колеги останаха впечатлени. Препоръчвам горещо!"</p>
+                    </div>
+                     <!-- Testimonial Card -->
+                    <div class="glassmorphism p-8 rounded-2xl border border-gray-100 shadow-sm scroll-reveal" style="transition-delay: 200ms;">
+                        <div class="flex items-center mb-4">
+                            <img src="https://i.pravatar.cc/150?u=a042581f4e29026704f" alt="Клиент 3" class="w-16 h-16 rounded-full mr-4 border-2 border-purple-500">
+                            <div>
+                                <h4 class="font-bold text-lg text-gray-800">Елена Василева</h4>
+                                <div class="text-yellow-400 mt-1">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-gray-700 italic">"Благодарим за невероятния рожден ден! DJ-ят усети перфектно настроението на гостите и дансингът не остана празен."</p>
+                    </div>
+                 </div>
+             </div>
+        </section>
+
+        <!-- FAQ Page -->
+        <section id="faq" class="page hidden py-16 md:py-20">
+             <div class="container mx-auto px-4 sm:px-6 max-w-4xl">
+                 <h1 class="text-4xl md:text-5xl font-black text-center mb-16 scroll-reveal">Често задавани <span class="neon-accent">въпроси</span></h1>
+                 <div class="space-y-4">
+                     <!-- FAQ Item -->
+                     <div class="faq-item bg-gray-50 rounded-lg border border-gray-200 scroll-reveal">
+                         <button class="faq-question w-full text-left p-6 flex justify-between items-center">
+                             <span class="font-semibold text-lg">Какви са цените ви?</span>
+                             <i class="fas fa-chevron-down transition-transform"></i>
+                         </button>
+                         <div class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+                             <p class="p-6 pt-0 text-gray-700">Цените ни варират в зависимост от вида на събитието, продължителността и необходимата техника. За да получите точна оферта, моля, свържете се с нас чрез формата за запитване.</p>
+                         </div>
+                     </div>
+                     <!-- FAQ Item -->
+                     <div class="faq-item bg-gray-50 rounded-lg border border-gray-200 scroll-reveal" style="transition-delay: 100ms;">
+                         <button class="faq-question w-full text-left p-6 flex justify-between items-center">
+                             <span class="font-semibold text-lg">Можем ли да изберем музиката?</span>
+                             <i class="fas fa-chevron-down transition-transform"></i>
+                         </button>
+                         <div class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+                             <p class="p-6 pt-0 text-gray-700">Разбира се! Ние насърчаваме клиентите си да споделят своите предпочитания. Можете да ни предоставите списък с любими песни, както и такива, които не искате да чуете. Нашият DJ ще съобрази програмата с вашите желания.</p>
+                         </div>
+                     </div>
+                      <!-- FAQ Item -->
+                     <div class="faq-item bg-gray-50 rounded-lg border border-gray-200 scroll-reveal" style="transition-delay: 200ms;">
+                         <button class="faq-question w-full text-left p-6 flex justify-between items-center">
+                             <span class="font-semibold text-lg">Колко време по-рано трябва да резервираме?</span>
+                             <i class="fas fa-chevron-down transition-transform"></i>
+                         </button>
+                         <div class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+                             <p class="p-6 pt-0 text-gray-700">Препоръчваме да направите резервация възможно най-рано, особено за сватби и събития през натоварените сезони (пролет и лято). Обикновено 6 до 12 месеца предварително е добър ориентир.</p>
+                         </div>
+                     </div>
+                      <!-- FAQ Item -->
+                     <div class="faq-item bg-gray-50 rounded-lg border border-gray-200 scroll-reveal" style="transition-delay: 300ms;">
+                         <button class="faq-question w-full text-left p-6 flex justify-between items-center">
+                             <span class="font-semibold text-lg">Каква техника използвате?</span>
+                             <i class="fas fa-chevron-down transition-transform"></i>
+                         </button>
+                         <div class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+                             <p class="p-6 pt-0 text-gray-700">Работим само с професионална аудио и светлинна техника от водещи марки като Pioneer DJ, RCF, Shure и други. Това гарантира кристално чист звук и впечатляващи визуални ефекти за вашето събитие.</p>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+        </section>
+
+        <!-- AI Playlist Generator Section -->
+        <section id="playlist-generator" class="page hidden py-16 md:py-20 bg-gray-50">
+            <div class="container max-w-4xl mx-auto px-4 sm:px-6">
+                <div class="text-center">
+                    <h1 class="text-4xl md:text-5xl font-black mb-4 scroll-reveal">AI Плейлист <span class="neon-accent">Генератор</span></h1>
+                    <p class="text-gray-600 max-w-3xl mx-auto mb-12 scroll-reveal">
+                        Не сте сигурни каква музика искате? Опишете вашето събитие и предпочитания, и нашият AI ще създаде перфектния плейлист за вас!
+                    </p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl border border-gray-200 shadow-sm scroll-reveal">
+                    <form id="playlist-form" class="space-y-6">
+                        <div>
+                            <label for="event-type-input" class="form-label">Тип събитие</label>
+                            <input type="text" id="event-type-input" name="eventType" required class="form-input" placeholder="Напр. сватба, рожден ден, фирмено парти">
+                        </div>
+                        <div>
+                            <label for="musical-preferences-input" class="form-label">Музикални предпочитания</label>
+                            <input type="text" id="musical-preferences-input" name="musicalPreferences" required class="form-input" placeholder="Напр. поп, рок, 80-те, българска естрада">
+                        </div>
+                        <div>
+                            <button type="submit" id="generate-playlist-btn" class="w-full bg-purple-600 text-white font-bold py-3 px-6 rounded-full hover:bg-purple-700 transition-all duration-300 transform hover:scale-105 neon-shadow flex items-center justify-center">
+                                <i class="fas fa-music mr-2"></i>
+                                <span>Генерирай плейлист</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <div id="playlist-results-container" class="mt-12 hidden">
+                     <div class="bg-white p-8 rounded-2xl border border-gray-200 shadow-sm">
+                        <h3 class="text-2xl font-bold mb-4">Вашият персонализиран плейлист</h3>
+                        <div id="playlist-results">
+                            <!-- Loading spinner and results will be injected here -->
+                        </div>
+                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Page -->
+        <section id="contact" class="page hidden py-16 md:py-20">
+             <div class="container mx-auto px-4 sm:px-6">
+                 <h1 class="text-4xl md:text-5xl font-black text-center mb-16 scroll-reveal">Свържете се <span class="neon-accent">с нас</span></h1>
+                 <div class="grid md:grid-cols-2 gap-12">
+                     <div class="scroll-reveal">
+                         <h2 class="text-2xl font-bold mb-4">Изпратете ни запитване</h2>
+                         <p class="text-gray-600 mb-6">Готови ли сте да направим партито ви незабравимо? Попълнете формата и ние ще се свържем с вас възможно най-скоро!</p>
+                         <div class="space-y-4">
+                             <div class="flex items-center">
+                                 <i class="fas fa-phone neon-accent text-xl mr-4"></i>
+                                 <a href="tel:0888329552" class="hover:text-purple-600 transition-colors">0888 329 552</a>
+                             </div>
+                             <div class="flex items-center">
+                                 <i class="fas fa-envelope neon-accent text-xl mr-4"></i>
+                                 <a href="mailto:djproinfobg@gmail.com" class="hover:text-purple-600 transition-colors">djproinfobg@gmail.com</a>
+                             </div>
+                             <div class="flex items-center">
+                                 <i class="fas fa-map-marker-alt neon-accent text-xl mr-4"></i>
+                                 <span>ж.к. Пейо К. Яворов 4, 1124 Sofia</span>
+                             </div>
+                         </div>
+                         <div class="mt-8 rounded-lg overflow-hidden shadow-lg">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2932.946365319409!2d23.34445307604474!3d42.68388497116616!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40aa85994018321d%3A0x639535f4f89283f6!2s42%C2%B041'04.4%22N%2023%C2%B020'49.3%22E!5e0!3m2!1sen!2sbg!4v1719862378832!5m2!1sen!2sbg" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                         </div>
+                     </div>
+                     <div class="scroll-reveal glassmorphism p-8 rounded-2xl border border-gray-100 shadow-sm">
+                         <form id="contact-page-form" class="space-y-4">
+                            <!-- Similar to modal form, but for the contact page -->
+                             <div>
+                                 <label for="cp-name" class="block text-sm font-medium text-gray-700">Име</label>
+                                 <input type="text" id="cp-name" name="name" required class="form-input">
+                            </div>
+                            <div>
+                                <label for="cp-phone" class="block text-sm font-medium text-gray-700">Телефон</label>
+                                <input type="tel" id="cp-phone" name="phone" required class="form-input">
+                            </div>
+                            <div>
+                                <label for="cp-email" class="block text-sm font-medium text-gray-700">Имейл</label>
+                                <input type="email" id="cp-email" name="email" required class="form-input">
+                            </div>
+                             <div>
+                                <label for="cp-message" class="block text-sm font-medium text-gray-700">Съобщение</label>
+                                 <textarea id="cp-message" name="message" rows="4" required class="form-input"></textarea>
+                            </div>
+                            <div>
+                                 <button type="submit" class="w-full bg-purple-600 text-white font-bold py-3 px-6 rounded-full hover:bg-purple-700 transition-all duration-300 transform hover:scale-105 neon-shadow">
+                                     Изпрати
+                                 </button>
+                             </div>
+                             <p id="cp-form-status" class="text-center text-sm mt-4"></p>
+                         </form>
+                     </div>
+                 </div>
+             </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="bg-gray-100 border-t border-gray-200 py-12">
+        <div class="container mx-auto px-4 sm:px-6 text-center text-gray-500">
+             <a href="#" data-page="home" class="text-3xl font-black tracking-wider nav-button mb-4 inline-block text-gray-800">
+                DJ <span class="neon-accent">PRO</span>
+            </a>
+            <div class="flex justify-center space-x-6 my-6">
+                <a href="#" class="text-gray-500 hover:text-purple-600 transition-colors text-2xl"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="text-gray-500 hover:text-purple-600 transition-colors text-2xl"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="text-gray-500 hover:text-purple-600 transition-colors text-2xl"><i class="fab fa-youtube"></i></a>
+                <a href="#" class="text-gray-500 hover:text-purple-600 transition-colors text-2xl"><i class="fab fa-tiktok"></i></a>
+            </div>
+            <p>&copy; 2025 DJ Pro. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button id="scroll-to-top" class="fixed bottom-6 right-6 bg-purple-600 text-white w-12 h-12 rounded-full hidden justify-center items-center text-xl neon-shadow hover:bg-purple-700 transition-all duration-300">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+    
+    <!-- Booking Modal -->
+    <div id="booking-modal" class="fixed inset-0 bg-black/70 flex items-start justify-center p-4 pt-12 sm:pt-20 z-50 hidden transition-opacity duration-300 opacity-0">
+        <div id="booking-modal-content" class="rounded-2xl w-full max-w-2xl p-6 sm:p-8 transform scale-95 transition-all duration-300 max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold">Резервация / Запитване</h2>
+                <button id="close-modal-btn" class="text-2xl text-gray-400 hover:text-white">&times;</button>
+            </div>
+
+            <!-- Step Form -->
+            <form id="booking-form">
+                <!-- Progress Bar -->
+                <div class="flex justify-between mb-6">
+                    <div class="step-indicator active" data-step="1">Стъпка 1: Събитие</div>
+                    <div class="step-indicator" data-step="2">Стъпка 2: Детайли</div>
+                    <div class="step-indicator" data-step="3">Стъпка 3: Контакти</div>
+                </div>
+                
+                <!-- Step 1 -->
+                <div class="step-form-step active" data-step="1">
+                    <h3 class="text-xl font-semibold mb-4">Изберете тип на събитието:</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <label class="form-radio-label"><input type="radio" name="event_type" value="Сватба" class="hidden" required><span><i class="fas fa-ring"></i> Сватба</span></label>
+                        <label class="form-radio-label"><input type="radio" name="event_type" value="Фирмено" class="hidden"><span><i class="fas fa-briefcase"></i> Фирмено</span></label>
+                        <label class="form-radio-label"><input type="radio" name="event_type" value="Частно парти" class="hidden"><span><i class="fas fa-birthday-cake"></i> Частно парти</span></label>
+                        <label class="form-radio-label"><input type="radio" name="event_type" value="Клубно" class="hidden"><span><i class="fas fa-compact-disc"></i> Клубно</span></label>
+                    </div>
+                     <button type="button" class="form-next-btn mt-6">Напред</button>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="step-form-step" data-step="2">
+                    <h3 class="text-xl font-semibold mb-4">Детайли за събитието:</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label for="event_date" class="form-label">Дата</label>
+                            <input type="date" id="event_date" name="event_date" required class="form-input">
+                        </div>
+                         <div>
+                            <label for="event_location" class="form-label">Населено място</label>
+                            <input type="text" id="event_location" name="location" required class="form-input">
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <label for="guests" class="form-label">Очакван брой гости</label>
+                        <input type="number" id="guests" name="guests" min="10" placeholder="50" class="form-input">
+                    </div>
+                    <!-- FIX: Added new fields -->
+                    <div class="mt-4">
+                        <label for="preferred_dj" class="form-label">Предпочитан DJ (по желание)</label>
+                        <select id="preferred_dj" name="preferred_dj" class="form-input">
+                            <option value="">Без предпочитания</option>
+                            <option value="DJ Mitev">DJ Mitev</option>
+                            <option value="DJ Yanberktz">DJ Yanberktz</option>
+                            <option value="DJ DIOR">DJ DIOR</option>
+                            <option value="DJ Toshko">DJ Toshko</option>
+                            <option value="DJ Just Hriso">DJ Just Hriso</option>
+                            <option value="DJ IF">DJ IF</option>
+                            <option value="DJ Bobby">DJ Bobby</option>
+                            <option value="DJ Mitrev">DJ Mitrev</option>
+                            <option value="DJ Peppy">DJ Peppy</option>
+                        </select>
+                    </div>
+                     <div class="mt-4">
+                        <label for="additional_info" class="form-label">Допълнителна информация</label>
+                        <textarea id="additional_info" name="additional_info" rows="3" placeholder="Специални изисквания, музикални предпочитания и др." class="form-input"></textarea>
+                    </div>
+                    <div class="flex justify-between mt-6">
+                        <button type="button" class="form-prev-btn">Назад</button>
+                        <button type="button" class="form-next-btn">Напред</button>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="step-form-step" data-step="3">
+                    <h3 class="text-xl font-semibold mb-4">Вашите контакти:</h3>
+                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                           <label for="name" class="form-label">Име</label>
+                           <input type="text" id="name" name="name" required class="form-input">
+                        </div>
+                        <div>
+                           <label for="phone" class="form-label">Телефон</label>
+                           <input type="tel" id="phone" name="phone" required class="form-input">
+                        </div>
+                     </div>
+                     <div class="mt-4">
+                         <label for="email" class="form-label">Имейл</label>
+                         <input type="email" id="email" name="email" required class="form-input">
+                     </div>
+                     <div class="mt-4">
+                        <label class="inline-flex items-center">
+                            <input type="checkbox" name="privacy_policy_agreed" required class="form-checkbox">
+                            <span class="ml-2 text-sm text-gray-300">Съгласен/на съм с <a href="#" class="underline hover:text-purple-400">Политиката за поверителност</a></span>
+                        </label>
+                     </div>
+                    <div class="flex justify-between mt-6">
+                        <button type="button" class="form-prev-btn">Назад</button>
+                        <button type="submit" class="form-submit-btn">Изпрати запитване</button>
+                    </div>
+                </div>
+            </form>
+            <p id="modal-form-status" class="text-center text-sm mt-4"></p>
+        </div>
+    </div>
+    
+    <!-- Gallery Lightbox Modal -->
+    <div id="lightbox-modal" class="fixed inset-0 bg-black/90 flex items-center justify-center z-50 hidden">
+        <button id="close-lightbox-btn" class="absolute top-6 right-8 text-white text-4xl">&times;</button>
+        <button id="prev-lightbox-btn" class="absolute left-8 text-white text-4xl"><i class="fas fa-chevron-left"></i></button>
+        <button id="next-lightbox-btn" class="absolute right-8 text-white text-4xl"><i class="fas fa-chevron-right"></i></button>
+        <img id="lightbox-image" src="" alt="Уголемено изображение от галерия" class="max-w-[90vw] max-h-[90vh] rounded-lg">
+    </div>
+
+    <!-- Custom CSS for form elements -->
+    <style>
+        .form-input {
+            width: 100%;
+            background-color: #FFFFFF;
+            border: 1px solid #D1D5DB;
+            color: #1F2937;
+            border-radius: 8px;
+            padding: 10px 15px;
+            transition: all 0.3s ease;
+        }
+        .form-input:focus {
+            outline: none;
+            border-color: #A855F7;
+            box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.3);
+        }
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #374151;
+        }
+        .form-checkbox {
+            border-radius: 4px;
+            border-color: #D1D5DB;
+            background-color: #F9FAFB;
+            color: #A855F7;
+        }
+        .form-checkbox:focus {
+            ring: #A855F7;
+        }
+        .form-radio-label span {
+            display: block;
+            padding: 1rem;
+            border: 2px solid #E5E7EB;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #4B5563;
+        }
+        .form-radio-label input:checked + span {
+            border-color: #A855F7;
+            background-color: rgba(168, 85, 247, 0.1);
+            color: #8B5CF6;
+            transform: scale(1.05);
+        }
+        .form-next-btn, .form-prev-btn, .form-submit-btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        .form-next-btn, .form-submit-btn {
+            background-color: #A855F7;
+            color: white;
+            box-shadow: 0 0 10px rgba(168, 85, 247, 0.5);
+        }
+        .form-next-btn:hover, .form-submit-btn:hover {
+            background-color: #9333EA;
+            transform: scale(1.05);
+        }
+        .form-prev-btn {
+            background-color: transparent;
+            border: 1px solid #D1D5DB;
+            color: #4B5563;
+        }
+        .form-prev-btn:hover {
+            background-color: #F3F4F6;
+        }
+        .step-indicator {
+            color: #6B7280;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+        .step-indicator.active {
+            color: #A855F7;
+            border-bottom-color: #A855F7;
+        }
+        .gallery-filter-btn {
+            background-color: transparent;
+            border: 1px solid #D1D5DB;
+            color: #4B5563;
+            padding: 0.5rem 1.5rem;
+            border-radius: 9999px;
+            margin: 0 0.5rem;
+            transition: all 0.3s ease;
+        }
+        .gallery-filter-btn.active, .gallery-filter-btn:hover {
+             background-color: #A855F7;
+             border-color: #A855F7;
+             color: white;
+        }
+        .gallery-grid-item {
+            transition: all 0.5s ease;
+            transform: scale(1);
+        }
+        .gallery-grid-item.hidden-item {
+            transform: scale(0);
+            width: 0;
+            height: 0;
+            padding: 0;
+            margin: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+
+        /* FIX: Dark theme for booking modal */
+        #booking-modal #booking-modal-content {
+            background: rgba(17, 24, 39, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        #booking-modal h2, #booking-modal h3, #booking-modal .form-label {
+            color: #E5E7EB;
+        }
+        #booking-modal .form-input {
+            background-color: rgba(31, 41, 55, 0.8);
+            border: 1px solid #4B5563;
+            color: #E5E7EB;
+        }
+        #booking-modal .form-radio-label span {
+            border-color: #4B5563;
+            color: #D1D5DB;
+        }
+        #booking-modal .form-radio-label input:checked + span {
+            border-color: #A855F7;
+            background-color: rgba(168, 85, 247, 0.2);
+            color: #C4B5FD;
+        }
+        #booking-modal .step-indicator {
+            color: #6B7280;
+        }
+         #booking-modal .step-indicator.active {
+            color: #A855F7;
+            border-bottom-color: #A855F7;
+        }
+        #booking-modal .form-prev-btn {
+            border: 1px solid #6B7280;
+            color: #D1D5DB;
+        }
+        #booking-modal .form-prev-btn:hover {
+            background-color: #4B5563;
+        }
+        #booking-modal .form-checkbox {
+            border-color: #4B5563;
+            background-color: rgba(31, 41, 55, 0.8);
+        }
+        #booking-modal span {
+            color: #D1D5DB;
+        }
+        #booking-modal a {
+            color: #A855F7;
+        }
+
+    </style>
+    
+    <!-- Стъпка 1: Добавяне на библиотеката на Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+        // --- Стъпка 2: Инициализация на Supabase клиента ---
+        const SUPABASE_URL = 'https://sorqjwppadopkcxrugus.supabase.co'; // <-- ПОСТАВЕТЕ ВАШИЯ URL ТУК
+        const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNvcnFqd3BwYWRvcGtjeHJ1Z3VzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTExNDU3NzcsImV4cCI6MjA2NjcyMTc3N30.jA1vPIErhxllu_1MHEsbIZjq5tKDJgBryhYqIOOvuAI';    // <-- ПОСТАВЕТЕ ВАШИЯ КЛЮЧ ТУК
+        
+        let supabaseClient = null;
+
+        if (SUPABASE_URL !== 'YOUR_SUPABASE_PROJECT_URL' && SUPABASE_KEY !== 'YOUR_SUPABASE_ANON_KEY') {
+            try {
+                supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+            } catch (error) {
+                console.error("Грешка при инициализация на Supabase:", error.message);
+            }
+        } else {
+            console.warn('Supabase не е конфигуриран. Моля, поставете вашите Project URL и Anon Key в script тага. Формите за запитване няма да работят.');
+        }
+
+
+        // --- CORE NAVIGATION LOGIC ---
+        const header = document.getElementById('header');
+        const pages = document.querySelectorAll('.page');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        function switchPage(pageId) {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            pages.forEach(page => {
+                page.classList.add('hidden');
+                page.classList.remove('active');
+            });
+            const activePage = document.getElementById(pageId);
+            if (activePage) {
+                activePage.classList.remove('hidden');
+                activePage.classList.add('active');
+            }
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.dataset.page === pageId) {
+                    link.classList.add('active');
+                }
+            });
+            if(!mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.add('hidden');
+            }
+        }
+
+        header.addEventListener('click', (e) => {
+            if (e.target.matches('.nav-button')) {
+                e.preventDefault();
+                const pageId = e.target.dataset.page;
+                if (pageId) {
+                    switchPage(pageId);
+                }
+            }
+        });
+
+        // --- MOBILE MENU ---
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // --- SCROLL TO TOP BUTTON ---
+        const scrollToTopBtn = document.getElementById('scroll-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollToTopBtn.classList.remove('hidden');
+                scrollToTopBtn.classList.add('flex');
+            } else {
+                scrollToTopBtn.classList.add('hidden');
+                scrollToTopBtn.classList.remove('flex');
+            }
+        });
+        scrollToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // --- SCROLL REVEAL ANIMATIONS ---
+        const scrollRevealElements = document.querySelectorAll('.scroll-reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        scrollRevealElements.forEach(el => {
+            observer.observe(el);
+        });
+
+        // --- BOOKING MODAL LOGIC ---
+        const bookingModal = document.getElementById('booking-modal');
+        const bookingModalContent = document.getElementById('booking-modal-content');
+        const openModalBtns = document.querySelectorAll('.booking-cta-btn');
+        const closeModalBtn = document.getElementById('close-modal-btn');
+
+        function openModal() {
+            bookingModal.classList.remove('hidden');
+            setTimeout(() => {
+                bookingModal.classList.add('opacity-100');
+                bookingModalContent.classList.add('scale-100');
+                bookingModalContent.classList.remove('scale-95');
+            }, 10);
+        }
+
+        function closeModal() {
+            bookingModal.classList.remove('opacity-100');
+            bookingModalContent.classList.remove('scale-100');
+            bookingModalContent.classList.add('scale-95');
+            setTimeout(() => {
+                bookingModal.classList.add('hidden');
+            }, 300);
+        }
+
+        openModalBtns.forEach(btn => btn.addEventListener('click', openModal));
+        closeModalBtn.addEventListener('click', closeModal);
+        bookingModal.addEventListener('click', (e) => {
+            if (e.target === bookingModal) {
+                closeModal();
+            }
+        });
+
+        // --- STEP FORM LOGIC (FIXED) ---
+        const bookingForm = document.getElementById('booking-form');
+        const steps = Array.from(bookingForm.querySelectorAll('.step-form-step'));
+        const stepIndicators = Array.from(bookingForm.querySelectorAll('.step-indicator'));
+        let currentStep = 0;
+
+        function showStep(stepIndex) {
+            steps.forEach((step, index) => {
+                step.classList.toggle('active', index === stepIndex);
+            });
+            stepIndicators.forEach((indicator, index) => {
+                indicator.classList.toggle('active', index <= stepIndex);
+            });
+            currentStep = stepIndex;
+        }
+
+        bookingForm.addEventListener('click', (e) => {
+            if (e.target.matches('.form-next-btn')) {
+                let isStepValid = false;
+
+                if (currentStep === 0) {
+                    const eventTypeSelected = bookingForm.querySelector('input[name="event_type"]:checked');
+                    if (eventTypeSelected) {
+                        isStepValid = true;
+                    } else {
+                        alert('Моля, изберете тип на събитието.');
+                    }
+                } else if (currentStep === 1) { 
+                    const eventDate = bookingForm.querySelector('input[name="event_date"]');
+                    const eventLocation = bookingForm.querySelector('input[name="location"]');
+                    if (eventDate.value && eventLocation.value) {
+                        isStepValid = true;
+                    } else {
+                        alert('Моля, попълнете дата и населено място.');
+                    }
+                }
+
+                if (isStepValid && currentStep < steps.length - 1) {
+                    showStep(currentStep + 1);
+                }
+            } else if (e.target.matches('.form-prev-btn')) {
+                if (currentStep > 0) {
+                    showStep(currentStep - 1);
+                }
+            }
+        });
+        
+        // --- FORM SUBMISSION LOGIC ---
+        const modalForm = document.getElementById('booking-form');
+        const contactPageForm = document.getElementById('contact-page-form');
+        const modalFormStatus = document.getElementById('modal-form-status');
+        const cpFormStatus = document.getElementById('cp-form-status');
+
+        async function handleFormSubmit(form, statusElement) {
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+
+                if (!supabaseClient) {
+                    statusElement.textContent = 'Формата не е конфигурирана правилно.';
+                    statusElement.style.color = '#F87171';
+                    return;
+                }
+
+                statusElement.textContent = 'Изпращане...';
+                statusElement.style.color = '#111827';
+
+                const formData = new FormData(form);
+                const bookingData = Object.fromEntries(formData.entries());
+                
+                // FIX: Коригирано мапване на полетата, за да съответстват на CSV/базата данни
+                const dataToInsert = {
+                    name: bookingData.name,
+                    email: bookingData.email,
+                    phone: bookingData.phone,
+                    event_type: bookingData.event_type || null,
+                    event_date: bookingData.event_date || null,
+                    location: bookingData.location || null,
+                    guests: bookingData.guests ? parseInt(bookingData.guests) : null,
+                    preferred_dj: bookingData.preferred_dj || null,
+                    additional_info: bookingData.additional_info || bookingData.message || null,
+                    privacy_policy_agreed: bookingData.privacy_policy_agreed === 'on',
+                };
+
+                try {
+                    const { data, error } = await supabaseClient
+                        .from('bookings') // Името на вашата таблица
+                        .insert([dataToInsert]);
+
+                    if (error) {
+                        throw error;
+                    }
+
+                    statusElement.textContent = 'Благодарим ви! Ще се свържем с вас скоро.';
+                    statusElement.style.color = '#10B981';
+                    form.reset();
+                    if (form.id === 'booking-form') {
+                        showStep(0);
+                        setTimeout(closeModal, 2500);
+                    }
+                } catch (error) {
+                    console.error('Грешка при запис в Supabase:', error);
+                    statusElement.textContent = `Възникна грешка: ${error.message}`;
+                    statusElement.style.color = '#EF4444';
+                }
+            });
+        }
+        
+        handleFormSubmit(modalForm, modalFormStatus);
+        handleFormSubmit(contactPageForm, cpFormStatus);
+
+         // --- AI PLAYLIST GENERATOR ---
+        const playlistForm = document.getElementById('playlist-form');
+        const generatePlaylistBtn = document.getElementById('generate-playlist-btn');
+        const playlistResultsContainer = document.getElementById('playlist-results-container');
+        const playlistResultsDiv = document.getElementById('playlist-results');
+
+        if (playlistForm) {
+            playlistForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+
+                const eventType = document.getElementById('event-type-input').value;
+                const musicalPreferences = document.getElementById('musical-preferences-input').value;
+
+                if (!eventType || !musicalPreferences) {
+                    alert('Моля, попълнете всички полета.');
+                    return;
+                }
+
+                // Show loading state
+                generatePlaylistBtn.disabled = true;
+                generatePlaylistBtn.innerHTML = `<i class="fas fa-spinner fa-spin mr-2"></i> Генериране...`;
+                playlistResultsContainer.classList.remove('hidden');
+                playlistResultsDiv.innerHTML = `<div class="flex justify-center items-center py-10"><i class="fas fa-spinner fa-spin text-4xl neon-accent"></i></div>`;
+
+                // Construct prompt
+                const prompt = `Generate a playlist of 20 songs for a "${eventType}" event with the following musical preferences: "${musicalPreferences}". The response must be only a numbered list of strings, with each string containing the artist and song title. Do not include any other text, titles, or introductions. For example: 1. Artist - Song Title`;
+
+                try {
+                    let chatHistory = [];
+                    chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+                    const payload = { contents: chatHistory };
+                    const apiKey = "AIzaSyCiGr0M9JeSFi6ZKL-arUmeVzmdhhD0iys"; // Left empty as per instructions
+                    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+                    
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`API request failed with status ${response.status}`);
+                    }
+
+                    const result = await response.json();
+                    
+                    if (result.candidates && result.candidates.length > 0 &&
+                        result.candidates[0].content && result.candidates[0].content.parts &&
+                        result.candidates[0].content.parts.length > 0) {
+                        
+                        const text = result.candidates[0].content.parts[0].text;
+                        const songs = text.split('\n').filter(song => song.trim() !== '').map(song => song.replace(/^\d+\.\s*/, ''));
+
+                        // Display playlist
+                        let playlistHtml = '<ul class="space-y-2 list-inside">';
+                        songs.forEach(song => {
+                            playlistHtml += `<li class="flex items-center gap-3"><i class="fas fa-music neon-accent"></i> <span>${song}</span></li>`;
+                        });
+                        playlistHtml += '</ul>';
+                        playlistResultsDiv.innerHTML = playlistHtml;
+
+                    } else {
+                        throw new Error("Неочакван формат на отговора от AI.");
+                    }
+
+                } catch (error) {
+                    console.error('Грешка при генериране на плейлиста:', error);
+                    playlistResultsDiv.innerHTML = `<p class="text-red-500 text-center">Възникна грешка при генерирането на плейлиста. Моля, опитайте отново.</p>`;
+                } finally {
+                    // Restore button state
+                    generatePlaylistBtn.disabled = false;
+                    generatePlaylistBtn.innerHTML = `<i class="fas fa-music mr-2"></i> <span>Генерирай плейлист</span>`;
+                }
+            });
+        }
+
+        // --- TESTIMONIAL SLIDER ---
+        const track = document.getElementById('testimonial-track');
+        if (track) {
+            const slides = Array.from(track.children);
+            const nextButton = document.getElementById('next-testimonial');
+            const prevButton = document.getElementById('prev-testimonial');
+            let slideIndex = 0;
+
+            const updateSlider = () => {
+                if (track) {
+                    track.style.transform = 'translateX(-' + slideIndex * 100 + '%)';
+                }
+            };
+            
+            nextButton.addEventListener('click', () => {
+                slideIndex = (slideIndex + 1) % slides.length;
+                updateSlider();
+            });
+
+            prevButton.addEventListener('click', () => {
+                slideIndex = (slideIndex - 1 + slides.length) % slides.length;
+                updateSlider();
+            });
+
+            setInterval(() => {
+                slideIndex = (slideIndex + 1) % slides.length;
+                updateSlider();
+            }, 5000);
+        }
+
+        // --- FAQ ACCORDION ---
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            const answer = item.querySelector('.faq-answer');
+            const icon = question.querySelector('i');
+
+            question.addEventListener('click', () => {
+                const isOpen = answer.classList.contains('open');
+                
+                faqItems.forEach(otherItem => {
+                    otherItem.querySelector('.faq-answer').style.maxHeight = null;
+                    otherItem.querySelector('.faq-answer').classList.remove('open');
+                    otherItem.querySelector('.faq-question i').style.transform = 'rotate(0deg)';
+                });
+
+                if (!isOpen) {
+                    answer.classList.add('open');
+                    answer.style.maxHeight = answer.scrollHeight + 'px';
+                    icon.style.transform = 'rotate(180deg)';
+                }
+            });
+        });
+
+        // --- GALLERY FILTER & LIGHTBOX ---
+        const filterBtns = document.querySelectorAll('.gallery-filter-btn');
+        const galleryGrid = document.getElementById('gallery-grid');
+        const galleryItems = Array.from(galleryGrid.querySelectorAll('.gallery-grid-item'));
+        
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                const filter = btn.dataset.filter;
+                
+                galleryItems.forEach(item => {
+                    item.classList.add('hidden-item');
+                    
+                    if (filter === 'all' || item.dataset.category === filter) {
+                        setTimeout(() => {
+                            item.classList.remove('hidden-item');
+                        }, 100);
+                    }
+                });
+            });
+        });
+        
+        const lightboxModal = document.getElementById('lightbox-modal');
+        const lightboxImage = document.getElementById('lightbox-image');
+        const closeLightboxBtn = document.getElementById('close-lightbox-btn');
+        const clickableImages = document.querySelectorAll('.gallery-item');
+        let currentImageIndex = 0;
+        let imagesToShow = [];
+
+        clickableImages.forEach((img) => {
+            img.addEventListener('click', () => {
+                imagesToShow = Array.from(document.querySelectorAll('#gallery-grid .gallery-grid-item:not(.hidden-item) .gallery-item'));
+                currentImageIndex = imagesToShow.indexOf(img);
+                lightboxImage.src = img.src.replace('&w=500&h=500&fit=crop', '');
+                lightboxModal.classList.remove('hidden');
+                lightboxModal.classList.add('flex');
+            });
+        });
+
+        closeLightboxBtn.addEventListener('click', () => {
+            lightboxModal.classList.add('hidden');
+            lightboxModal.classList.remove('flex');
+        });
+        
+        const prevLightboxBtn = document.getElementById('prev-lightbox-btn');
+        const nextLightboxBtn = document.getElementById('next-lightbox-btn');
+        
+        function showLightboxImage() {
+            if (imagesToShow.length > 0) {
+                 lightboxImage.src = imagesToShow[currentImageIndex].src.replace('&w=500&h=500&fit=crop', '');
+            }
+        }
+
+        prevLightboxBtn.addEventListener('click', () => {
+            currentImageIndex = (currentImageIndex - 1 + imagesToShow.length) % imagesToShow.length;
+            showLightboxImage();
+        });
+
+        nextLightboxBtn.addEventListener('click', () => {
+            currentImageIndex = (currentImageIndex + 1) % imagesToShow.length;
+            showLightboxImage();
+        });
+
+        switchPage('home');
+    });
+    </script>
+<p style="border-radius: 8px; text-align: center; font-size: 12px; color: #fff; margin-top: 16px;position: fixed; left: 8px; bottom: 8px; z-index: 10; background: rgba(0, 0, 0, 0.8); padding: 4px 8px;">Made with <img src="https://enzostvs-deepsite.hf.space/logo.svg" alt="DeepSite Logo" style="width: 16px; height: 16px; vertical-align: middle;display:inline-block;margin-right:3px;filter:brightness(0) invert(1);"><a href="https://enzostvs-deepsite.hf.space" style="color: #fff;text-decoration: underline;" target="_blank" >DeepSite</a> - 🧬 <a href="https://enzostvs-deepsite.hf.space?remix=GoKuSaNtm/dj-pro-max" style="color: #fff;text-decoration: underline;" target="_blank" >Remix</a></p></body>
+</html>
